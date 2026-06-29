@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeGuard - Python Security Scanner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="title-container">
+                    <svg class="shield-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    <h1>CodeGuard</h1>
+                </div>
+                <p class="subtitle">Static Code Analysis Tool for Security Vulnerabilities</p>
+            </div>
+        </header>
+
+        <!-- Input Section -->
+        <section class="input-section">
+            <div class="input-header">
+                <label for="code-input" class="input-label">Python Code Input</label>
+                <div class="char-counter">
+                    <span id="char-count">0</span> characters
+                </div>
+            </div>
+            <textarea 
+                id="code-input" 
+                class="code-textarea" 
+                placeholder="Paste your Python code here for security analysis...&#10;&#10;Example:&#10;import sqlite3&#10;&#10;def get_user(user_id):&#10;    cursor.execute('SELECT * FROM users WHERE id = ' + user_id)&#10;    return cursor.fetchone()"
+                spellcheck="false"
+            ></textarea>
+            <div class="button-group">
+                <button id="scan-btn" class="btn btn--primary btn--lg">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    Scan Code
+                </button>
+                <button id="sample-btn" class="btn btn--secondary btn--lg">Load Sample Code</button>
+                <button id="clear-btn" class="btn btn--outline btn--lg">Clear</button>
+            </div>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Analyzing code...</p>
+        </div>
+
+        <!-- Results Section -->
+        <section id="results-section" class="results-section hidden">
+            <!-- Summary Card -->
+            <div id="summary-card" class="summary-card">
+                <h2>Scan Results</h2>
+                <div id="summary-content" class="summary-content"></div>
+            </div>
+
+            <!-- Detailed Findings -->
+            <div id="findings-container" class="findings-container"></div>
+        </section>
+
+        <!-- Info Footer -->
+        <footer class="info-footer">
+            <h3>Detected Vulnerability Types</h3>
+            <div class="vulnerability-types">
+                <div class="vuln-type">
+                    <div class="vuln-badge vuln-badge--high">HIGH</div>
+                    <div class="vuln-info">
+                        <strong>SEC001: SQL Injection</strong>
+                        <p>Detects SQL queries using string concatenation instead of parameterized queries</p>
+                    </div>
+                </div>
+                <div class="vuln-type">
+                    <div class="vuln-badge vuln-badge--high">HIGH</div>
+                    <div class="vuln-info">
+                        <strong>SEC002: Hardcoded Credentials</strong>
+                        <p>Identifies passwords, API keys, tokens, and secrets in source code</p>
+                    </div>
+                </div>
+                <div class="vuln-type">
+                    <div class="vuln-badge vuln-badge--high">HIGH</div>
+                    <div class="vuln-info">
+                        <strong>SEC003: Dangerous eval/exec Usage</strong>
+                        <p>Detects use of eval() or exec() functions that can lead to code injection</p>
+                    </div>
+                </div>
+                <div class="vuln-type">
+                    <div class="vuln-badge vuln-badge--high">HIGH</div>
+                    <div class="vuln-info">
+                        <strong>SEC004: Command Injection</strong>
+                        <p>Identifies os.system() calls that can lead to command injection</p>
+                    </div>
+                </div>
+                <div class="vuln-type">
+                    <div class="vuln-badge vuln-badge--medium">MEDIUM</div>
+                    <div class="vuln-info">
+                        <strong>SEC005: XSS Vulnerability</strong>
+                        <p>Detects unsafe template rendering without proper escaping</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
